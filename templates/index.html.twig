@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        .car-image {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <h2>{{ data.car.make ~ ' ' ~ data.car.specification }} ({{ data.yearOfProduction }})</h2>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    {{ data.price }}
+                                </div>
+                            </div>
+                            {% for image in data.standardImages|slice(0, 1) %}
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <img class="car-image" src="{{ image.url }}" alt="{{ image.description.en_GB }}">
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-6">
+                                                <h3>Contact</h3>
+                                                <div>{{ data.contact.firstName ~ ' ' ~ data.contact.lastName }}</div>
+                                                <div>{{ data.location.street }}</div>
+                                                <div>{{ data.location.postalCode ~ ' ' ~ data.location.city }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ dump(data) }}
+            {% include 'footer.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+    </script>
+{% endblock %}
